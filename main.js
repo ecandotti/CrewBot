@@ -1,6 +1,7 @@
 // Import de la class Collection et Client depuis DiscordJS + Import de FileSystem + les valeurs dans config.json
 const { Client, Collection } = require("discord.js")
 const fs = require('fs')
+const { prefix, token } = require("./config.json")
 
 // Instanciation de Client (bot) + Création d'une collection pour les commandes
 const client = new Client()
