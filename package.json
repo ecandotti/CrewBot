@@ -1,0 +1,33 @@
+{
+  "name": "crewbot",
+  "version": "1.0.0",
+  "description": "Bot de gestion de serveur",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ecandotti/CrewBot.git"
+  },
+  "author": "Enzo Candotti <enzo.candotti16@hotmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ecandotti/CrewBot/issues"
+  },
+  "homepage": "https://github.com/ecandotti/CrewBot#readme",
+  "dependencies": {
+    "@discordjs/opus": "^0.3.3",
+    "discord.js": "^12.4.1",
+    "ffmpeg-static": "^4.2.7",
+    "fluent-ffmpeg": "^2.1.2",
+    "node-fetch": "^2.6.1",
+    "nodemon": "^2.0.6",
+    "opusscript": "0.0.7",
+    "spotify-web-api-node": "^5.0.0",
+    "ytdl-core": "^4.0.3"
+  },
+  "devDependencies": {
+    "eslint": "^7.12.0"
+  }
+}
