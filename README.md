@@ -6,19 +6,20 @@
 *<div align="center">Bot de gestion pour un serveur Discord (Rôle, Kick, Ban, Musique, Jeu...)</div>*
 
 
-## FONCTIONNE
-- [X] Requête API REST
-- [X] HomeFragment
-- [X] AboutFragment
+___________
 
-## A FAIRE
-- [ ] HomeFragment
-- [ ] Ajout dans le fragement Favorite lors du clique sur AIMER
-- [ ] Tester la persistance des données pour la liste personnalisé
+- [X] Dog (Requete API, gération image d'un chien :)
+- [X] Musique, par url youtube
+- [X] Information sur un utilisateur du serveur
+
+- [ ] Jeu de dé
+- [ ] Kick/Ban/Modération chat
+- [ ] Musique par mot clé / Spotify / SoundCloud
+___________
 
 ## :package: Les packages utilisés :
 
-- L'incontournable [DiscordJS](https://square.github.io/retrofit/)
+- L'incontournable [DiscordJS](https://discord.js.org/#/)
 - Pour la musique par url YouTube :
   - [@discordjs/opus](https://www.npmjs.com/package/@discordjs/opus)
   - [ytdl-core](https://www.npmjs.com/package/ytdl-core)
