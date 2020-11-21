@@ -18,13 +18,13 @@ ___________
 ___________
 
 ## :package: Les packages utilisés :
-
+~~~bash
 - L'incontournable [DiscordJS](https://discord.js.org/#/)
 - Pour la musique par url YouTube :
   - [@discordjs/opus](https://www.npmjs.com/package/@discordjs/opus)
   - [ytdl-core](https://www.npmjs.com/package/ytdl-core)
   - [ffmpeg-static](https://www.npmjs.com/package/ffmpeg-static)
-  
+~~~
 
 ## :scroll: License
 
