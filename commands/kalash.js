@@ -1,4 +1,4 @@
-const { myqueue } = require('../config.json')
+const { myqueue, prefix } = require('../config.json')
 
 function whichMusic(musicUrl) {
     switch(musicUrl){
@@ -37,42 +37,35 @@ function whichMusic(musicUrl) {
         case 'finishhim' || '17':
             return 'https://id.time2rap.io/a/1041//17%20-%20Finish%20Him.mp3'
         default:
-            return false
+            return;
     }
 }
 
 module.exports = {
     name: "kalash",
     description: "Playing last album of Kalash Criminel sound",
+    howUse: `${prefix}kalash <nom music>`,
     execute(message,args) {
         if(message.member.voice.channel) {
             message.member.voice.channel.join()
             .then(connexion => {
                 if(!args[0]){
-                    message.channel.send("Aucun url a été transmis")
-                    message.channel.send("Fin de transmission")
+                    message.channel.send("Aucun son transmis")
+                    message.channel.send("Ciao")
                     connexion.disconnect()
                 }else {
-                    
-                    myqueue.push(whichMusic(args[0]))
-                    console.log(myqueue)
-
-                    let dispatcher = connexion.play(myqueue[0], {quality: "highestaudio"})
-
-                    dispatcher.on("finish", () => {
-                        message.channel.send(`Merci d'avoir écouter Kalash Criminou`)
-                        dispatcher.destroy()
-                        connexion.disconnect()
-                    })
-
-                    dispatcher.on("error", err => {
-                        message.channel.send(`Une erreur est survenu sur le dispatcher : ${err}`)
-                    })
+                    if(whichMusic(args[0]) === undefined) {
+                        message.channel.send(`Erreur d'écriture`)
+                    }else {
+                        myqueue.push(whichMusic(args[0]))
+                        message.channel.send(`Musique ajouté`)
+                        message.channel.send(`Si le bot n'est pas la, veuillez faire ${prefix}launch pour lancer la playlist`)
+                    }
                 }
             })
-                .catch(err => {
-                    message.channel.send(`Une erreur est survenu : ${err}`)
-                })
+            .catch(err => {
+                message.channel.send(`Une erreur est survenu : ${err}`)
+            })
         }else {
             message.channel.send("Vous devez êtres présent sur un salon vocal ! Banane !")
         }

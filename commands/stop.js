@@ -1,8 +1,9 @@
-let { myqueue } = require('../config.json')
+let { myqueue, prefix } = require('../config.json')
 
 module.exports = {
     name: "stop",
-    description: "Bot musique",
+    description: "Stop currently song",
+    howUse: `${prefix}stop`,
     execute(message) {
         if(message.member.voice.channel) {
             message.member.voice.channel.join()

@@ -1,8 +1,9 @@
-let { myqueue } = require('../config.json')
+let { myqueue, prefix } = require('../config.json')
 
 module.exports = {
     name: "show",
     description: "Show current queue",
+    howUse: `${prefix}show`,
     async execute(message) {
         
         if(myqueue.length <= 0) {
