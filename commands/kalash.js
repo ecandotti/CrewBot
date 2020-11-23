@@ -1,4 +1,4 @@
-let myqueue = localStorage.setItem('myqueue',myqueue)
+const { myqueue } = require('../config.json')
 
 function whichMusic(musicUrl) {
     switch(musicUrl){
@@ -36,11 +36,13 @@ function whichMusic(musicUrl) {
             return 'https://id.time2rap.io/a/1041//16%20-%20Turn%20Up%20(feat.%20Nekfeu).mp3'
         case 'finishhim' || '17':
             return 'https://id.time2rap.io/a/1041//17%20-%20Finish%20Him.mp3'
+        default:
+            return false
     }
 }
 
 module.exports = {
-    name: "kc",
+    name: "kalash",
     description: "Playing last album of Kalash Criminel sound",
     execute(message,args) {
         if(message.member.voice.channel) {
@@ -53,6 +55,7 @@ module.exports = {
                 }else {
                     
                     myqueue.push(whichMusic(args[0]))
+                    console.log(myqueue)
 
                     let dispatcher = connexion.play(myqueue[0], {quality: "highestaudio"})
 

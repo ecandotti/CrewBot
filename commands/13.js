@@ -1,3 +1,5 @@
+let { myqueue } = require('../config.json')
+
 function whichMusic(musicUrl) {
     switch(musicUrl){
         case 'bandeorganise' || '1':
@@ -26,6 +28,8 @@ function whichMusic(musicUrl) {
             return 'https://wwv.33rapfr.com/wp-content/uploads/2020/10/12-La-nuit.mp3'
         case 'marseille' || '13':
             return 'https://wwv.33rapfr.com/wp-content/uploads/2020/10/13-Je-suis-Marseille.mp3'
+        default:
+            return false
     }
 }
 
@@ -41,13 +45,13 @@ module.exports = {
                     message.channel.send("Fin de transmission")
                     connexion.disconnect()
                 }else {
-                    let dispatcher = connexion.play(whichMusic(args[0], {quality: "highestaudio"}))
+                    
+                    myqueue.push(whichMusic(args[0]))
+                    console.log(myqueue)
 
-                    dispatcher.on("finish", () => {
-                        message.channel.send(`Merci d'avoir écouter le J`)
-                        dispatcher.destroy()
-                        connexion.disconnect()
-                    })
+                    let dispatcher = connexion.play(myqueue[0], {quality: "highestaudio"})
+
+                    myqueue.shift()
 
                     dispatcher.on("error", err => {
                         message.channel.send(`Une erreur est survenu sur le dispatcher : ${err}`)
