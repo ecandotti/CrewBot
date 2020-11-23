@@ -1,7 +1,7 @@
 // Import de la class Collection et Client depuis DiscordJS + Import de FileSystem + les valeurs dans config.json
 const { Client, Collection } = require("discord.js")
 const fs = require('fs')
-const { token, prefix } = require('./config.json')
+const { token, prefix, exist_command } = require('./config.json')
 
 // Instanciation de Client (bot) + Création d'une collection pour les commandes
 const client = new Client()
@@ -14,6 +14,7 @@ for(const file of commandFiles){
   const command = require(`./commands/${file}`)
   client.commands.set(command.name, command)
   console.log(`Commande chargé = ${command.name}`)
+  exist_command.push(`${command.howUse}`)
 }
 
 // Temoin annonçant le bon lancement du bot
