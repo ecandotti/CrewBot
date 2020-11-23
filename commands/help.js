@@ -1,17 +1,13 @@
-const { prefix } = require("../config.json")
-const fs = require('fs')
-
-const commandFiles = fs.readdirSync("./commands").filter(files => files.endsWith(".js"))
+const { prefix, exist_command } = require("../config.json")
 
 module.exports = {
     name: "help",
     description: "Donne les commandes existantes",
+    howUse: `${prefix}help`,
     async execute(message) {
-
         message.channel.send(`Préfix utilisé : ${prefix}`)
-        for(const file of commandFiles){
-            const command = require(`./commands/${file}`)
-            message.channel.send(`Commande chargé = ${command.name}`)
+        for(var i= 0; i < exist_command.length; i++) {
+            message.channel.send(String(exist_command[i]))
         }
     }
 }
