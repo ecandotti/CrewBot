@@ -7,6 +7,10 @@ const { token, prefix } = require('./config.json')
 const client = new Client()
 client.commands = new Collection()
 
+// Global queue
+export let myqueue = []
+localStorage.setItem('myqueue',myqueue)
+
 // Récupération des .js dans le dossier commands (chaque fichier = une commande)
 // Ajout de la commande dans la collection commands
 const commandFiles = fs.readdirSync("./commands").filter(files => files.endsWith(".js"))

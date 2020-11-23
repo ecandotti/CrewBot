@@ -1,3 +1,5 @@
+let myqueue = localStorage.setItem('myqueue',myqueue)
+
 function whichMusic(musicUrl) {
     switch(musicUrl){
         case 'twitter' || '1':
@@ -49,7 +51,10 @@ module.exports = {
                     message.channel.send("Fin de transmission")
                     connexion.disconnect()
                 }else {
-                    let dispatcher = connexion.play(whichMusic(args[0], {quality: "highestaudio"}))
+                    
+                    myqueue.push(whichMusic(args[0]))
+
+                    let dispatcher = connexion.play(myqueue[0], {quality: "highestaudio"})
 
                     dispatcher.on("finish", () => {
                         message.channel.send(`Merci d'avoir écouter Kalash Criminou`)
