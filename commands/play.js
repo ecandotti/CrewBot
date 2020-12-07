@@ -1,50 +1,30 @@
-const { myqueue, prefix } = require('../config.json')
+const { prefix } = require('../config.json');
+const fetch = require('node-fetch');
 
 module.exports = {
-    name: "play",
-    description: "Launch the playlist",
-    howUse: `${prefix}play list`,
-    execute(message,args) {
-        if(message.member.voice.channel) {
-            message.member.voice.channel.join()
-                .then(connexion => {
-                    if(!args[0]){
-                        message.channel.send("Aucun argument transmis")
-                        message.channel.send(`Peut etre voulez-vous faire ${prefix}play list ?`)
-                        connexion.disconnect()
-                    }
-                    else if(args[0] === 'list') {
-                        if(myqueue.length > 0){
-                            let dispatcher = connexion.play(myqueue[0], {quality: "highestaudio"})
-
-                            myqueue.shift()
-
-                            dispatcher.on("finish", () => {
-                                if(myqueue[0]) {
-                                    let dispatcher = connexion.play(myqueue[0], {quality: "highestaudio"})
-                                } else {
-                                    message.channel.send("Merci d'avoir écouter ma musique")
-                                    dispatcher.destroy()
-                                    connexion.disconnect()
-                                }
-
-                                dispatcher.on("error", err => {
-                                    message.channel.send(`Une erreur est survenu sur le dispatcher : ${err}`)
-                                })
-                            })
-                            dispatcher.on("error", err => {
-                                message.channel.send(`Une erreur est survenu sur le dispatcher : ${err}`)
-                            })
-                        }
-                    } else {
-                        message.channel.send("La liste est vide")
-                    }
-                })
-                .catch(err => {
-                    message.channel.send(`Une erreur est survenu : ${err}`)
-                })
-        }else {
-            message.channel.send("Vous devez êtres présent sur un salon vocal ! Banane !")
-        }
-    }
-}
+	name: 'play',
+	description: 'Play music',
+	howUse: `${prefix}play`,
+	execute(message, args) {
+		let urlPlay = '';
+		if(message.member.voice.channel) {
+			message.member.voice.channel.join()
+				.then(connexion => {
+					if(args[0]) {
+						fetch(`http://localhost:8181/songs/byID/${args[0]}`)
+							.then(response => response.json())
+							.then(req => {
+								for (const key in req) {
+									urlPlay = req[key].songURL;
+								}
+								const dispatcher = connexion.play(urlPlay, { quality: 'highestaudio' });
+								dispatcher;
+							});
+					}
+					else {
+						message.channel.send('Aucun argument transmis');
+					}
+				});
+		}
+	},
+};
