@@ -1,7 +1,7 @@
 {
-  "name": "crewbot",
+  "name": "lucio",
   "version": "1.0.0",
-  "description": "Bot de gestion de serveur",
+  "description": "Bot Music",
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
