@@ -1,6 +1,6 @@
 {
-	"prefix": "your-prefix",
-	"token": "<your-token>",
-	"myqueue": [],
-	"exist_command": []
+	"prefix": "<your-prefix>",
+	"token": "<token>",
+	"playlist": [],
+	"help_com": []
 }
